@@ -1,0 +1,36 @@
+<!--Creaciòn de web con idioma español-->
+<html lang="es">
+
+<!--Cabeceras de la página web para configuraciones-->
+
+<head>
+    <!--Titulo De La Página Web-->
+    <title>Mapas</title>
+    <!--Conjunto de caracteres para que la ñ y tildes se vean correctamente-->
+    <meta charset="UTF-8" />
+    <!--Creaciòn de icono para la pestaña web del navegador-->
+    <link rel="icon" type="image/x-icon" href="https://openlayers.org/favicon.ico" />
+    <!--No cambiar el tamaño de acuerdo al tamaño de pantalla para que se vea igual en dispositivos moviles-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<!--cuerpo de la página web}-->
+
+<body>
+    <!--Div o división que contendra todo nuestra interfaz-->
+    <div>
+        <!--Lugar para mostrar el mapa-->
+        
+        <div id="map"></div>
+
+        <!-- 
+        <div id="logoOdhdn" z-index="1000">
+            <img src="./imagenes/LOGO-ODHDN.png" alt="Observatorio De Derechos Humanos Y Defensa Nacional">
+        </div>
+        -->
+        
+    </div>
+    <!--Se conecta al archivo main.ts que contiene el código para crear el mapa-->
+    <script type="module" src="./main.ts"></script>
+</body>
+
+</html>
