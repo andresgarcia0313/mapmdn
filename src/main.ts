@@ -7,32 +7,47 @@ import { FullScreen, ZoomSlider, ScaleLine, OverviewMap } from 'ol/control';//Im
 import proj4 from 'proj4'; //proj4 lo necesita la linea de escala del mapa
 import { register } from 'ol/proj/proj4';//proj4 lo necesita la linea de escala del mapa
 import OSM from 'ol/source/OSM';
+import MousePosition from 'ol/control/MousePosition';
+import { createStringXY } from 'ol/coordinate';
 import jquery from "jquery";
 const $: JQueryStatic = jquery;
+const mousePositionControl = new MousePosition({
+    coordinateFormat: createStringXY(12),
+    projection: 'EPSG:4326',
+    // comment the following two lines to have the mouse position
+    // be placed within the map.
+    className: 'custom-mouse-position',
+    target: document.getElementById('mouse-position'),
+});
 
 proj4.defs('Indiana-East', 'PROJCS["IN83-EF",GEOGCS["LL83",DATUM["NAD83",' + 'SPHEROID["GRS1980",6378137.000,298.25722210]],PRIMEM["Greenwich",0],' + 'UNIT["Degree",0.017453292519943295]],PROJECTION["Transverse_Mercator"],' + 'PARAMETER["false_easting",328083.333],' + 'PARAMETER["false_northing",820208.333],' + 'PARAMETER["scale_factor",0.999966666667],' + 'PARAMETER["central_meridian",-85.66666666666670],' + 'PARAMETER["latitude_of_origin",37.50000000000000],' + 'UNIT["Foot_US",0.30480060960122]]');
 register(proj4);
 const div: string = 'map';//Etiquta html donde se renderiza el mapa
-const map: Map = new Map({});//Creación del objeto mapa para agregarle imagenes o posición al mismo
+const view: View = new View({
+    maxZoom: 19,
+    minZoom: 6,
+    center: fromLonLat([-74.0942881, 4.6451452]),
+    zoom: 18
+});//Ubicación con cordenadas
+
 const keymaptiler: string = "KI6pOBMRE16JRueFffi7"//clave para utilizar el servicio gratis de mapa satelital de baja resolución
 const layerOSM = new OSM();
 const layerOpenStreetMap = new TileLayer({ source: new XYZ({ url: 'https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png' }) });//capa o imagenes de mapas de servidor gratuito de mapas para ver mapas de calles
 const layerRasterArcGIS = new TileLayer({ source: new XYZ({ url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', }) });//capa o imagenes de mapa de servidor de la empresa esri con su producto arcgis para ver mapas tipo topologicos
+const map: Map = new Map({ layers: [layerOpenStreetMap] });//Creación del objeto mapa para agregarle imagenes o posición al mismo
 const layerMapTiler = new TileLayer({ className: 'ol-layer-imagery', source: new XYZ({ url: 'https://api.maptiler.com/tiles/satellite/{z}/{x}/{y}.jpg?key=' + keymaptiler, crossOrigin: '', }) });//capa o imagenes de mapa de servidor de maptiler para ver imagenes satelitales
-const view: View = new View({ center: fromLonLat([-74.0939619, 4.6447036]), zoom: 15 });//Ubicación con cordenadas
-const zoomslider = new ZoomSlider({ duration: 4000 });//Crea en memoria ram el codigo para estar listo a ser llamado a la interfaz grafica y mostrar una barra deslizante de ampliaciòn del mapa
+const zoomslider = new ZoomSlider({ duration: 3000, });//Crea en memoria ram el codigo para estar listo a ser llamado a la interfaz grafica y mostrar una barra deslizante de ampliaciòn del mapa
 const fullScreen = new FullScreen();//Instancia el objeto de botón para pantalla completa para después mostrarlo
 const overviewMapControl = new OverviewMap({ layers: [new TileLayer({ source: layerOSM, }),], collapsed: false });// agrega el mini mapa con la capa prevista
-
-/** variable que almacena el identificador de clase del elemento div que contiene publicidad */
-const disclaimer:string=".disclaimer";
-
+const disclaimer: string = ".disclaimer";/** variable que almacena el identificador de clase del elemento div que contiene publicidad */
 map.setTarget(div);//Presentar en la web el mapa mediante la etiqueta html incluida en la variable de texto div
 map.setView(view);//establecer la posición inicial del mapa de acuerdo a la constante view
 map.addControl(zoomslider);//se agrega control del zoom deslizante
 map.addControl(fullScreen);//muestra el control de pantalla completa
 map.addControl(overviewMapControl);//muestra el control de pantalla completa
-map.addLayer(layerOpenStreetMap);//agrega la imagen de capa de acuerdo a lo que se almaceno en el mapa
+map.addControl(mousePositionControl);//Agrega la posición Del Mouse
+//map.addLayer(layerOpenStreetMap);//agrega la imagen de capa de acuerdo a lo que se almaceno en el mapa
+//map.addLayer(layerRasterArcGIS);//agrega la imagen de capa de acuerdo a lo que se almaceno en el mapa
 var mapNumberLayer = 1;//Variable contadora para mostrar capa de acuerdo a su número
 //Metodo que cambia el mapa
 function setMapLayer() {
@@ -61,22 +76,22 @@ function setMapLayer() {
     }
 }
 //setInterval(setMapLayer, 4000);//establecimiento de intervalo para ejecutar cada cierto tiempo el metodo de cambio de capa
-class Adblock{
-    identifier:string;
+class Adblock {
+    identifier: string;
     /**
      * 
      * @param identifier ingrese el class o id a eliminar
      * @example let objAdBlock = new Adblock(".disclaimer");
      */
-    constructor(identifier:string){
-        this.identifier=identifier;
+    constructor(identifier: string) {
+        this.identifier = identifier;
     }
-    hide(){
+    remove() {
         $(this.identifier).remove();
-        setInterval(()=>{
+        setInterval(() => {
             $(this.identifier).remove();
-        },500);        
+        }, 500);
     }
 }
 var objAdBlock = new Adblock(disclaimer);
-objAdBlock.hide();
+objAdBlock.remove();

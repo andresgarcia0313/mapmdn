@@ -1,12 +1,47 @@
-@import "../node_modules/ol/ol.css"; /*agrega estilos a los botones por defecto del mapa*/
+@import "../node_modules/ol/ol.css";
+/*agrega estilos a los botones por defecto del mapa*/
 
-html, body { /*para que la web ocupe toda la pantalla*/
+html,
+body {
+  /*para que la web ocupe toda la pantalla*/
   margin: 0;
   height: 100%;
 }
-#map {/*para que el mapa ocupe toda la pantalla*/
+
+#map {
+  /*para que el mapa ocupe toda la pantalla*/
   position: absolute;
-  top: 0;
+  top: 0px;
   bottom: 0;
   width: 100%;
+}
+
+#mouse-position {
+  z-index: 1000;
+  position: absolute;
+  bottom: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.sidepanel {
+  background: #1F6B75;
+  width: 20%;
+  height: 100%;
+  float: right;
+}
+
+.sidepanel-title {
+  width: 100%;
+  font-size: 3em;
+  color: #ffffff;
+  display: block;
+  text-align: center;
+}
+
+.ol-zoomslider,.ol-zoom{
+  left: 48px;
 }

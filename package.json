@@ -6,7 +6,7 @@
   "scripts": {
     "start": "vite src --host",
     "build": "vite build src",
-    "serve": "vite preview src",
+    "serve": "vite preview src --host",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
