@@ -7,6 +7,9 @@ import { FullScreen, ZoomSlider, ScaleLine, OverviewMap } from 'ol/control';//Im
 import proj4 from 'proj4'; //proj4 lo necesita la linea de escala del mapa
 import { register } from 'ol/proj/proj4';//proj4 lo necesita la linea de escala del mapa
 import OSM from 'ol/source/OSM';
+import jquery from "jquery";
+const $: JQueryStatic = jquery;
+
 proj4.defs('Indiana-East', 'PROJCS["IN83-EF",GEOGCS["LL83",DATUM["NAD83",' + 'SPHEROID["GRS1980",6378137.000,298.25722210]],PRIMEM["Greenwich",0],' + 'UNIT["Degree",0.017453292519943295]],PROJECTION["Transverse_Mercator"],' + 'PARAMETER["false_easting",328083.333],' + 'PARAMETER["false_northing",820208.333],' + 'PARAMETER["scale_factor",0.999966666667],' + 'PARAMETER["central_meridian",-85.66666666666670],' + 'PARAMETER["latitude_of_origin",37.50000000000000],' + 'UNIT["Foot_US",0.30480060960122]]');
 register(proj4);
 const div: string = 'map';//Etiquta html donde se renderiza el mapa
@@ -20,6 +23,10 @@ const view: View = new View({ center: fromLonLat([-74.0939619, 4.6447036]), zoom
 const zoomslider = new ZoomSlider({ duration: 4000 });//Crea en memoria ram el codigo para estar listo a ser llamado a la interfaz grafica y mostrar una barra deslizante de ampliaciòn del mapa
 const fullScreen = new FullScreen();//Instancia el objeto de botón para pantalla completa para después mostrarlo
 const overviewMapControl = new OverviewMap({ layers: [new TileLayer({ source: layerOSM, }),], collapsed: false });// agrega el mini mapa con la capa prevista
+
+/** variable que almacena el identificador de clase del elemento div que contiene publicidad */
+const disclaimer:string=".disclaimer";
+
 map.setTarget(div);//Presentar en la web el mapa mediante la etiqueta html incluida en la variable de texto div
 map.setView(view);//establecer la posición inicial del mapa de acuerdo a la constante view
 map.addControl(zoomslider);//se agrega control del zoom deslizante
@@ -54,3 +61,22 @@ function setMapLayer() {
     }
 }
 //setInterval(setMapLayer, 4000);//establecimiento de intervalo para ejecutar cada cierto tiempo el metodo de cambio de capa
+class Adblock{
+    identifier:string;
+    /**
+     * 
+     * @param identifier ingrese el class o id a eliminar
+     * @example let objAdBlock = new Adblock(".disclaimer");
+     */
+    constructor(identifier:string){
+        this.identifier=identifier;
+    }
+    hide(){
+        $(this.identifier).remove();
+        setInterval(()=>{
+            $(this.identifier).remove();
+        },500);        
+    }
+}
+var objAdBlock = new Adblock(disclaimer);
+objAdBlock.hide();

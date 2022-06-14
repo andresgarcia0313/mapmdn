@@ -35,3 +35,9 @@ To generate a build ready for production:
     npm run build src
 
 Then deploy the contents of the `dist` directory to your server.  You can also run `npm run serve` to serve the results of the `dist` directory for preview.
+
+open in windows explorer and copy files
+
+
+ftp://odhdn@files.000webhost.com/public_html/
+Asde345
