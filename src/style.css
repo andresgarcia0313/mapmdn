@@ -5,7 +5,8 @@ html,
 body {
   /*para que la web ocupe toda la pantalla*/
   margin: 0;
-  font-family: "Segoe UI", sans-serif;/*Permite que el menù la X Se Vea Bien*/
+  font-family: "Segoe UI", sans-serif;
+  /*Permite que el menù la X Se Vea Bien*/
   font-size: 100%;
 
 }
@@ -45,7 +46,8 @@ body {
 }
 
 .ol-zoom {
-  top: 2.5em;
+  top: unset;
+  bottom: .5em;
 }
 
 .ol-zoomslider {
@@ -65,12 +67,12 @@ body {
   top: 0;
   left: 0;
   z-index: 1;
-  background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(9,85,121,1) 14%, rgba(255,255,255,1) 100%);
+  background: linear-gradient(0deg, rgba(2, 0, 36, 1) 0%, rgba(9, 85, 121, 1) 14%, rgba(255, 255, 255, 1) 100%);
   overflow-x: hidden;
   transition: 0.4s;
   padding: 1rem 0;
   box-sizing: border-box;
-  box-shadow: 10px 0px 20px -7px rgba(0,0,0,1);
+  box-shadow: 10px 0px 20px -7px rgba(0, 0, 0, 1);
 }
 
 .sidebar .boton-cerrar {
@@ -143,20 +145,21 @@ h1 {
   display: none;
   position: absolute;
 }
-#sidebar img{
+
+#sidebar img {
   width: 100%;
 }
 
 /*botón cerrar panel animado*/
 #nav-button {
   cursor: pointer;
-  padding: 10px 40px 15px 0px;  
+  padding: 10px 40px 15px 0px;
 }
 
 #nav-button span,
 #nav-button span:after,
 #nav-button span:before {
-  
+
   transition: all 500ms ease-in-out;
   border-radius: 1px;
   height: 5px;
@@ -171,12 +174,14 @@ h1 {
 #nav-button span:before {
   top: -10px;
 }
+
 #nav-button span:after {
   bottom: -10px;
-  
+
 }
+
 #nav-button {
-  margin: 10px;  
+  margin: 10px;
 }
 
 #nav-button.active span {
@@ -187,9 +192,11 @@ h1 {
 #nav-button.active span:after {
   top: 10px;
 }
+
 #nav-button.active span:after {
   transform: rotate(-45deg);
 }
+
 #nav-button.active span:before {
   transform: rotate(45deg);
 }
