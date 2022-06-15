@@ -65,7 +65,7 @@ body {
   top: 0;
   left: 0;
   z-index: 1;
-  background-color: #547281;
+  background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(9,85,121,1) 14%, rgba(255,255,255,1) 100%);
   overflow-x: hidden;
   transition: 0.4s;
   padding: 1rem 0;
