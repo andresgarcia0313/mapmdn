@@ -1,0 +1,47 @@
+    1  pkg search nodejs
+    2  apt update
+    3  pkg search nvm
+    4  pkg search nodejs
+    5  pkg install binutils
+    6  pkg install nodejs-lts
+    7  npm install gulp-cli --global
+    8  npm install yo --global
+    9  npm install @microsoft/generator-sharepoint --global
+   10  pkg search python
+   11  pkg install python
+   12  npm install @microsoft/generator-sharepoint --global
+   13  npm list --global --depth=0
+   14  npm install npm
+   15  npm list --global --depth=0
+   16  pkg upgrade
+   17  npm install @microsoft/generator-sharepoint --global
+   18  exit
+   19  ping www.google.com
+   20  exit
+   21  ping www.google.com
+   22  pkg search node
+   23  pkg install nodejs-lts
+   24  pkg search neovim
+   25  pkg install neovim
+   26  pkg install neovim -y
+   27  neovim
+   28  vim
+   29  nvim
+   30  cd ..
+   31  pwd
+   32  ls -la
+   33  mkdir .config
+   34  cd .config/
+   35  mkdir nvim
+   36  cd nvim
+   37  pkg install nano
+   38  nano init.vim
+   39  cd ../../
+   40  cd dev/mapmdn/
+   41  dir
+   42  cs src/
+   43  cd src
+   44  ls -la
+   45  nvim
+   46  cd ..
+   47  history >termux.txt
