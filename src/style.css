@@ -11,12 +11,6 @@ body {
 
 }
 
-#contenido {
-  background-color: aqua;
-
-
-}
-
 #mouse-position {
   z-index: 1;
   position: absolute;
@@ -35,9 +29,6 @@ body {
   height: 100%;
   float: left
 }
-
-
-
 
 .ol-zoom,
 .ol-zoomslider {
@@ -128,6 +119,7 @@ h1 {
 #contenido {
   transition: margin-left .4s;
   padding: 0rem;
+  background-color: aqua;
 }
 
 .abrir-cerrar {
@@ -159,7 +151,6 @@ h1 {
 #nav-button span,
 #nav-button span:after,
 #nav-button span:before {
-
   transition: all 500ms ease-in-out;
   border-radius: 1px;
   height: 5px;
@@ -199,4 +190,8 @@ h1 {
 
 #nav-button.active span:before {
   transform: rotate(45deg);
+}
+.ol-full-screen {
+  right: .5em;
+  top: 2.5em;
 }
